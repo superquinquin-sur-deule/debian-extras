@@ -24,8 +24,16 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      - name: Import GPG Key
+        uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+
       - name: Build ftp-archive
-        run: make
+        run: |
+            make
+            gpg --detach-sign -vao public/Release.gpg public/Release
+            gpg --clearsign -vao public/InRelease public/Release
 
       - name: Upload artifact
         if: github.event_name == 'push'

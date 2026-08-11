@@ -7,3 +7,19 @@ This repository is provided with no guarantee of availability, persistence,
 or timely key rotation. It may move, disappear, or change signing keys without
 notice. Repository metadata is signed, but the packages themselves are not.
 </p>
+
+<h2>Manual Install for Debian</h2>
+
+<pre>
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://superquinquin-sur-deule.github.io/debian-extras/key.asc | sudo gpg --dearmor -o /etc/apt/keyrings/superquinquin.gpg
+
+sudo tee /etc/apt/sources.list.d/superquinquin.sources > /dev/null <<EOF
+Types: deb
+URIs: https://superquinquin-sur-deule.github.io/debian-extras/
+Suites: ./
+Signed-By: /etc/apt/keyrings/superquinquin.gpg
+EOF
+
+sudo apt update
+</pre>
