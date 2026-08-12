@@ -13,8 +13,10 @@ check: public/deb/checksums.txt
 
 release:
 	cp src/* public
-	apt-ftparchive packages public | gzip -c9 > public/Packages.gz
-	apt-ftparchive release public > public/Release
+	cd public && \
+	apt-ftparchive packages . > Packages && \
+	gzip -fk9 Packages && \
+	apt-ftparchive release . > Release
 
 public/deb/packages.txt: packages/*.deb.src | public/deb
 	cat $^ > $@
