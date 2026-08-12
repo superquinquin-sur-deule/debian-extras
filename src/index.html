@@ -14,7 +14,7 @@ notice. Repository metadata is signed, but the packages themselves are not.
 sudo mkdir -p /etc/apt/keyrings
 curl -fsSL https://superquinquin-sur-deule.github.io/debian-extras/key.asc | sudo gpg --dearmor -o /etc/apt/keyrings/superquinquin.gpg
 
-sudo tee /etc/apt/sources.list.d/superquinquin.sources > /dev/null <<EOF
+sudo tee /etc/apt/sources.list.d/superquinquin.sources > /dev/null &lt;&lt;EOF
 Types: deb
 URIs: https://superquinquin-sur-deule.github.io/debian-extras/
 Suites: ./
